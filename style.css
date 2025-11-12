@@ -11,30 +11,45 @@
         top: 0;
         width: 100%;
     }
+
+    /*Aqui começa a mecher dentro do site, em cima é o código do relatório*/
 }
 body{
-    background-color:#4e5f51;
-    color: #f0da96;
+        margin: 0; 
+        padding: 0;
+        
+        background-color: #4e5f51;
+        color:#f0da96;
 }
 header{
-    background-color: #A0C2D5 ;
-    height: 80px;
-    }
-    footer{
-    background-color: #F1EAE1;
-    height: 350px;
+    text-align: center;
+    background-color: #2b2b2b3b ;
+    width: auto;
+    height: auto;
+}
+
+footer{
+    background-color: #2b2b2b3b;
+    width: auto;
+    height: 150px;
+}
+.pé{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+
 }
 .lado {
     display: flex; 
     justify-content: space-around; 
     align-items:flex-start; 
-    gap: 20px; 
 }
 
 .texto {
     width: 45%;
     padding: 25px;
-    background-color: #2b2b2b3b;
+    background-color:#2b2b2b3b;
     border: 1px solid #000000;
     border-radius: 8px;
     
@@ -50,13 +65,12 @@ h2 {
     display: flex; 
     justify-content: space-around; 
     align-items:flex-start; 
-    gap: 20px; 
 }
 
 .texto1 {
     width: 45%;
     padding: 25px;
-    background-color:  #2b2b2b3b;
+    background-color: #2b2b2b3b;;
     border: 1px solid #000000;
     border-radius: 8px;
     
@@ -65,7 +79,7 @@ h2 {
 .texto2 {
     width: 45%;
     padding: 25px;
-    background-color:  #2b2b2b3b;;
+    background-color: #2b2b2b3b;;
     border: 1px solid #000000;
     border-radius: 8px;
    
@@ -74,7 +88,6 @@ h2 {
     display: flex; 
     justify-content: space-around; 
     align-items:flex-start; 
-    gap: 20px; 
 }
 
 .texto2 {

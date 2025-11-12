@@ -377,38 +377,67 @@ function gerarRelatorio(){
   const acucar_chaId = document.getElementById("acucar").value;
   const caldas_chaId = document.getElementById("caldas").value;
   const leites_chaId = document.getElementById("leites").value;
-  const forma_pagamento_Id = document.getElementById("forma_pagamento").value;
+  const formasPagamento_Id = document.getElementById("forma_pagamento").value;
   const observacoesId = document.getElementById("observacoes").value;
   const quantidade = document.getElementById("quantidade").value;
   const donuts_S_Id = document.getElementById("donuts_S").value;
   const donuts_D_Id = document.getElementById("donuts_D").value;
+
+  let forma_pagamentoId;
+  for (let i = 0; i < formasPagamento.length; i++) {
+      if (formasPagamento[i].checked) {
+          forma_pagamentoId = formasPagamento[i].value;
+          break; // Sai do loop assim que encontrar o que está selecionado
+      }
+  }
+  // Se a variável não estiver marcada, então o progama avisa que a forma de pagamento não está selecionada
+  if (!forma_pagamentoId) {
+      forma_pagamentoId = "Nenhuma forma de pagamento selecionada";
+  }
+  //da agora pa usar a forma de pagmento no relatorio :D
+  console.log("Forma de pagamento:", forma_pagamentoId);
+
+
+  let observacaoFinal;
+
+  // Verifica se a observação está vazia
+  if (observacoesId.trim() === "") {
+    observacaoFinal = "Nenhuma observação";
+  } else {
+    observacaoFinal = observacoesId;
+  }
+
+  // Agora da pa usar a observação final no relatorio :3
+  console.log("Observações:", observacaoFinal);
+
  
 
 
   var Cafe1 = procurarPorId(Cafe, CafeId);
   var Chas1 = procurarPorId(Chas, ChasId);
-  var temperatura1 = procurarPorId(temperatura, temperaturaId);
-  var Copos1 = procurarPorId(Copos, Copos_cafeId);
-  var Xicaras1 = procurarPorId(Xicaras, Xicaras_cafeId);
-  var Chocolate1 = procurarPorId(Chocolate, Chocolate_cafeId);
-  var acucar1 = procurarPorId(acucar, acucar_cafeId);
-  var caldas1 = procurarPorId(caldas, caldas_cafeId);
-  var leites1 = procurarPorId(leites, leites_cafeId);
-  var Copos2 = procurarPorId(Copos, Copos_chaId);
-  var Xicaras2 = procurarPorId(Xicaras, Xicaras_chaId);
-  var Chocolate2 = procurarPorId(Chocolate, Chocolate_chaId);
-  var acucar2 = procurarPorId(acucar, acucar_chaId);
-  var caldas2 = procurarPorId(caldas, caldas_chaId);
-  var leites2 = procurarPorId(leites, leites_chaId);
+  var temperatura1 = procurarPorId(temperatura,temperaturaId);
+  var Copos1 = procurarPorId(Copos_cafe, Copos_cafeId);
+  var Xicaras1 = procurarPorId(Xicaras_cafe, Xicaras_cafeId);
+  var Chocolate1 = procurarPorId(Chocolate_cafe, Chocolate_cafeId);
+  var acucar1 = procurarPorId(acucar_cafe, acucar_cafeId);
+  var caldas1 = procurarPorId(caldas_cafe, caldas_cafeId);
+  var leites1 = procurarPorId(leites_cafe, leites_cafeId);
+
+  var Copos2 = procurarPorId(Copos_cha, Copos_chaId);
+  var Xicaras2 = procurarPorId(Xicaras_cha, Xicaras_chaId);
+  var Chocolate2 = procurarPorId(Chocolate_cha, Chocolate_chaId);
+  var acucar2 = procurarPorId(acucar_cha, acucar_chaId);
+  var caldas2 = procurarPorId(caldas_cha, caldas_chaId);
+  var leites2 = procurarPorId(leites_cha, leites_chaId);
   var donuts_S1 = procurarPorId (donuts_S, donuts_S_Id);
   var donuts_D1 = procurarPorId (donuts_D, donuts_D_Id);
-  var temperatura_cha_1 = procurarPorId (temperatura_cha, temperatura_cha_Id);
+  var temperatura_cha_2 = procurarPorId (temperatura_cha, temperatura_cha_Id);
 
 
   const custoCafe = Cafe1.preco * quantidade;
   const custoChas = Chas1.preco * quantidade;
   const custotemperatura = temperatura1.preco * quantidade;
-  const custotemperatura_cha = temperatura_cha_1.preco * quantidade;
+  const custotemperatura_cha = temperatura_cha_2.preco * quantidade;
   const custoCopos_cafe = Copos1.preco * quantidade;
   const custoXicaras_cafe = Xicaras1.preco * quantidade;
   const custoChocolate_cafe = Chocolate1.preco * quantidade; 
@@ -423,23 +452,23 @@ function gerarRelatorio(){
   const custoleites_cha = leites2.preco * quantidade; 
   const custodonuts_S = donuts_S1.preco * quantidade;
   const custodonuts_D = donuts_D1.preco * quantidade;
-  const total = custoCafe + custoChas + custoChocolate_cafe  +custoChocolate_cha + custoCopos_cafe + custoXicaras_cafe + custoacucar_cafe + custocaldas_cafe + custoleites_cafe +custoCopos_cha + custoXicaras_cha + custoacucar_cha + custocaldas_cha + custoleites_cha + custotemperatura +custotemperatura_cha + custodonuts_S + custodonuts_D;
+  const total = custoCafe + custoChas + custoChocolate_cafe  +custoChocolate_cha + custoCopos_cafe + custoXicaras_cafe + custoacucar_cafe + custocaldas_cafe + custoleites_cafe +custoCopos_cha + custoXicaras_cha + custoacucar_cha + custocaldas_cha + custoleites_cha + custotemperatura + custotemperatura_cha + custodonuts_S + custodonuts_D;
 
   const relatorioHTML = `
   
   <h2>Pedido final</h2>
   <p><strong>Nome do cliente:</strong>${nome}<p>
   <p><strong>Café</strong> ${Cafe1.nome} - R$ ${custoCafe.toFixed(2)}</p>
-  <p><strong>Chá:</strong> ${Chas1.nome} - R$ ${custoChas.toFixed(2)}</p>
   <p><strong>Temperatura cafe :</strong> ${temperatura1.nome}</p>
-  <p><strong>Temperatura cha:</strong> ${temperatura2.nome}</p>
+  <p><strong>Temperatura cha:</strong> ${temperatura_cha_2.nome}</p>
   <p><strong>Copos:</strong>${Copos1.nome} - R$ ${custoCopos_cafe}
   <p><strong>Xicara:</strong> ${Xicaras1.nome} - R$ ${custoXicaras_cafe.toFixed(2)}</p>
   <p><strong>Açucar:</strong> ${acucar1.nome} - R$ ${custoacucar_cafe.toFixed(2)}</p>
   <p><strong>Chocolate:</strong> ${Chocolate1.nome} - R$ ${custoChocolate_cafe.toFixed(2)}</p>
   <p><strong>Caldas:</strong> ${caldas1.nome} - R$ ${custocaldas_cafe.toFixed(2)}</p>
   <p><strong>Leite:</strong> ${leites1.nome} - R$ ${custoleites_cafe.toFixed(2)}</p>
-  
+
+  <p><strong>Chá:</strong> ${Chas1.nome} - R$ ${custoChas.toFixed(2)}</p>
   <p><strong>Copos:</strong>${Copos2.nome} - R$ ${custoCopos_cha}
   <p><strong>Xicara:</strong> ${Xicaras2.nome} - R$ ${custoXicaras_cha.toFixed(2)}</p>
   <p><strong>Açucar:</strong> ${acucar2.nome} - R$ ${custoacucar_cha.toFixed(2)}</p>
@@ -449,7 +478,7 @@ function gerarRelatorio(){
   <p><strong>Comida salgado:</strong> ${donuts_S1.nome} - R$ ${custodonuts_S.toFixed(2)}</p> 
   <p><strong>Comida doce:</strong> ${donuts_D1.nome} - R$ ${custodonuts_D.toFixed(2)}</p>
   <p><strong>Observações:</strong> ${observacoesId}<p>
-  <p><strong>Forma de pagamento:</strong> ${forma_pagamentoId}<p>
+  <p><strong>Forma de pagamento:</strong> ${formasPagamento_Id}<p>
   <p><strong>Total:</strong> ${total.toFixed(2)}<p>
 `;
 
